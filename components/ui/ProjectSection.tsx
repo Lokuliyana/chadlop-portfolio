@@ -3,7 +3,7 @@
 import ProjectCard from '../reusable/ProjectCard'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
-const R3FCanvas = dynamic(() => import('../reusable/R3FCanvas'), { ssr: false })
+const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
 
 const projects = [
   {

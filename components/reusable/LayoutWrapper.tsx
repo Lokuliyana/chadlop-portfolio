@@ -1,6 +1,6 @@
 'use client'
 
-import R3FCanvas from '@/components/reusable/R3FCanvas'
+import R3FCanvas from '@/components/visuals/R3FCanvas'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (

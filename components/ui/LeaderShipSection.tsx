@@ -7,7 +7,7 @@ import CountUp from 'react-countup'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import dynamic from 'next/dynamic'
-const R3FCanvas = dynamic(() => import('../reusable/R3FCanvas'), { ssr: false })
+const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
 
 const trophies = [
   { title: 'Best Debater – Ananda Piyadigama ‘24', subtitle: 'All Island Championship', icon: '🏆' },

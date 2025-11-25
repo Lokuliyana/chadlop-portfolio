@@ -8,14 +8,14 @@ import avatarAnimation from '@/public/lottie/Animation - 1746417621387.json'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 
-const R3FCanvas = dynamic(() => import('../reusable/R3FCanvas'), { ssr: false })
+const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
 const Lottie = dynamic(() => import('lottie-react'), {
   ssr: false,
   loading: () => <div className="w-20 h-20" />,
 })
 
 const greetings = [
-  `<span class='text-white'>Hi, I’m <strong class='text-cyan-400'>Chandupa</strong> 👋<br/> A Developer & Tech Communicator</span>`,
+  `<span class='text-white'>Hi, I’m <strong class='text-cyan-400'>Chandupa Lokuliyana</strong> 👋<br/> A Developer & Tech Communicator</span>`,
   `<span class='text-cyan-300 italic'>Still here? Let’s build something cool 💻</span>`,
 ]
 

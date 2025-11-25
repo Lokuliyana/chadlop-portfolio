@@ -24,7 +24,7 @@ import { GiBrain } from 'react-icons/gi'
 import { IconType } from 'react-icons'
 import dynamic from 'next/dynamic'
 
-const R3FCanvas = dynamic(() => import('../reusable/R3FCanvas'), { ssr: false })
+const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
 
 type SkillItem = {
   name: string

@@ -13,17 +13,12 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Chandupa Lokuliyana | Full Stack Developer',
-  description:
-    'Official portfolio of Chandupa Lokuliyana — full-stack developer, debater, and problem solver. Explore projects, skills, and contact info.',
-  icons: {
-    icon: '/favicon.ico',
-  },
+  title: 'Chadlop — Where Ideas Evolve into Digital Power',
+  description: 'We build next-gen software solutions that scale, inspire, and perform.',
   openGraph: {
-    title: 'Chandupa Lokuliyana | Full Stack Developer',
-    description:
-      'Building scalable systems with Next.js, Django, and Node.js. See my work.',
-    url: 'https://chandupa.dev',
+    title: 'Chadlop',
+    description: 'Custom software, elegant design, and deep tech—engineered with love.',
+    url: 'https://chadlop.com',
     type: 'website',
   },
 }

@@ -8,7 +8,7 @@ import { Tooltip } from 'react-tooltip'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
-const R3FCanvas = dynamic(() => import('../reusable/R3FCanvas'), { ssr: false })
+const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
 
 const timeline = [
   { year: '2022 - May', title: 'O/Ls – 9As 🎓' },
