@@ -1,5 +1,5 @@
-
-import type { ISourceOptions } from "tsparticles-engine";
+// src/config/particlesOptions.ts
+import type { ISourceOptions } from '@tsparticles/engine';
 
 const particlesOptions: ISourceOptions = {
   fullScreen: {
@@ -8,7 +8,7 @@ const particlesOptions: ISourceOptions = {
   },
   background: {
     color: {
-      value: "#0f172a",
+      value: '#0f172a',
     },
   },
   fpsLimit: 60,
@@ -18,21 +18,24 @@ const particlesOptions: ISourceOptions = {
         enable: false,
         mode: [],
       },
-      resize: true,
+      // use object form to satisfy typings
+      resize: {
+        enable: true,
+      },
     },
   },
   particles: {
     color: {
-      value: "#00ffff",
+      value: '#00ffff',
     },
     links: {
       enable: false,
     },
     move: {
-      direction: "none",
+      direction: 'none',
       enable: true,
       outModes: {
-        default: "bounce",
+        default: 'bounce',
       },
       random: true,
       speed: 0.3,
@@ -49,7 +52,7 @@ const particlesOptions: ISourceOptions = {
       value: 0.1,
     },
     shape: {
-      type: "circle",
+      type: 'circle',
     },
     size: {
       value: { min: 3, max: 6 },

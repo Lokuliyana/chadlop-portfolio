@@ -1,16 +1,21 @@
 // app/layout.tsx
-import '@/app/globals.css'
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import Navbar from '@/components/ui/NavBar'
-import LayoutWrapper from '@/components/reusable/LayoutWrapper'
+import '@/app/globals.css';
+import type { Metadata } from 'next';
+import { Outfit, Inter } from 'next/font/google';
+import Navbar from '@/components/ui/NavBar';
+import LayoutWrapper from '@/components/reusable/LayoutWrapper';
 
-const poppins = Poppins({
-  weight: ['400', '600', '700'],
+const outfit = Outfit({
   subsets: ['latin'],
-  variable: '--font-poppins',
+  variable: '--font-outfit',
   display: 'swap',
-})
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Chadlop — Where Ideas Evolve into Digital Power',
@@ -21,29 +26,27 @@ export const metadata: Metadata = {
     url: 'https://chadlop.com',
     type: 'website',
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`bg-background text-white ${poppins.variable} font-sans antialiased transition-colors duration-300`}
+        className={`bg-background text-white ${outfit.variable} ${inter.variable} font-sans antialiased transition-colors duration-300`}
       >
         <LayoutWrapper>
-        <div className="min-h-screen flex flex-col">
-          {/* 🧠 Global NavBar component here */}
-          <Navbar />
-          <main className="flex-1 overflow-x-hidden">{children}</main>
-          {/* 📬 Footer or Contact Component */}
-          {/* <Footer /> */}
-        </div>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-1 overflow-x-hidden">{children}</main>
+            {/* <Footer /> */}
+          </div>
         </LayoutWrapper>
       </body>
     </html>
-  )
+  );
 }

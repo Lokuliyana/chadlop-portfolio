@@ -3,75 +3,104 @@
 import ProjectCard from '../reusable/ProjectCard'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
-const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
+
 
 const projects = [
   {
-    title: 'Room Booking App',
+    title: 'Danidu.com – Enterprise Tuition Platform',
     description: [
-      'Built with Django & PostgreSQL',
-      'Includes admin dashboard, email alerts, SEO, chatbot (Wit.AI)',
+      'Architected a multi-tenant platform supporting 500+ active students and 40+ monthly classes.',
+      'Engineered a custom recording management system handling 50GB+ of annual video content.',
+      'Optimized MongoDB aggregation pipelines, improving backend query throughput by 32%.',
+      'Implemented a secure, randomized quiz engine with automated scoring and performance analytics.',
     ],
-    tech: ['Django', 'PostgreSQL', 'Wit.AI', 'Bootstrap'],
+    tech: ['Next.js', 'Express.js', 'MongoDB', 'Node.js'],
+    image: '/projects/danidu.png',
+    liveUrl: 'https://danidu.com',
+    githubUrl: '#',
+  },
+  {
+    title: 'Intelligent Spatial Management System (FYP)',
+    description: [
+      'Developed a real-time room booking system managing concurrency for 100+ rooms.',
+      'Integrated Wit.AI NLP for a chatbot, reducing manual support queries by 30%.',
+      'Reduced SQL query latency by 25% through strategic indexing and Redis caching layers.',
+    ],
+    tech: ['Django', 'PostgreSQL', 'Wit.AI', 'Redis'],
     image: '/projects/room-booking.jpg',
-    preview: '/projects/room-booking-preview.gif',
     liveUrl: 'https://room-booking.chandupa.dev',
     githubUrl: 'https://github.com/Lokuliyana/room-booking-app',
   },
   {
-    title: 'Virtual Institute Platform',
+    title: 'Euphoria – Mindful Application',
     description: [
-      'Built for Chadlop startup using Next.js + Express',
-      'Video player, JWT auth, student class booking system',
+      'Building a modular mindfulness platform with integrated e-commerce and content delivery.',
+      'Achieved a 40% reduction in First Contentful Paint (FCP) via Next.js server-side rendering.',
+      'Status: Under Development',
     ],
-    tech: ['Next.js', 'Express.js', 'MySQL', 'JWT'],
-    image: '/projects/virtual-institute.jpg',
-    preview: '/projects/virtual-institute-preview.gif',
-    liveUrl: 'https://virtual.chadlop.com',
-    githubUrl: 'https://github.com/Lokuliyana/virtual-institute',
+    tech: ['Next.js', 'React', 'TailwindCSS'],
+    image: '/projects/euphoria.png',
+    liveUrl: 'https://euphoria-hiru.vercel.app/',
+    githubUrl: '#',
   },
   {
-    title: 'Secure File Transfer System',
+    title: 'Vogue Essentials Store',
     description: [
-      'Enterprise-level secure file sharing web app',
-      'Supports OTP login, JWT, AES & RSA encryption, integrity checks',
+      'Developed a high-performance e-commerce frontend with optimized asset delivery.',
+      'Improved page load metrics by 35% using lazy loading and image optimization techniques.',
     ],
-    tech: ['Node.js', 'Express', 'MongoDB', 'JWT', 'RSA', 'AES', 'OTP'],
-    image: '/projects/secure-transfer.jpg',
-    preview: '/projects/secure-transfer-preview.gif',
-    liveUrl: 'https://secure.chadlop.com',
-    githubUrl: 'https://github.com/Lokuliyana/secure-file-transfer',
+    tech: ['Next.js', 'React', 'TailwindCSS'],
+    image: '/projects/vogue-essentials.png',
+    liveUrl: 'https://vogue-essentials-store.vercel.app/',
+    githubUrl: '#',
   },
   {
-    title: 'Movie Recommendation App',
+    title: 'Artisan Roast',
     description: [
-      'RESTful API backend with GoLang',
-      'Movie search chatbot + recommendation engine',
+      'Designed a responsive landing page with complex Framer Motion animations.',
+      'Focus on smooth 60FPS transitions and interactive UI elements.',
     ],
-    tech: ['GoLang', 'MongoDB', 'React', 'Chatbot'],
-    image: '/projects/movie-app.jpg',
-    preview: '/projects/movie-app-preview.gif',
-    liveUrl: 'https://movies.chandupa.dev',
-    githubUrl: 'https://github.com/Lokuliyana/movie-recommendation-app',
+    tech: ['Next.js', 'React', 'Framer Motion'],
+    image: '/projects/artisan-roast.png',
+    liveUrl: 'https://artisan-roast.vercel.app/',
+    githubUrl: '#',
   },
   {
-    title: 'Tic Tac Toe – Lua Version',
+    title: 'Luminous',
     description: [
-      'Classic game implemented in Lua',
-      'CLI-based logic with win detection and replay loop',
+      'Implemented a modern web application focusing on component reusability and design system consistency.',
     ],
-    tech: ['Lua'],
-    image: '/projects/tic-tac-toe.jpg',
-    preview: '/projects/tic-tac-toe-preview.gif',
-    liveUrl: 'https://tic-tac.chandupa.dev',
-    githubUrl: 'https://github.com/Lokuliyana/tic-tac-toe-lua',
+    tech: ['Next.js', 'React', 'TailwindCSS'],
+    image: '/projects/luminous.png',
+    liveUrl: 'https://luminous-eta.vercel.app/',
+    githubUrl: '#',
+  },
+  {
+    title: 'Chandupa.dev – Personal Portfolio',
+    description: [
+      'Engineered an SEO-optimized portfolio with dynamic content and interactive 3D elements.',
+    ],
+    tech: ['Next.js', 'React', 'TailwindCSS'],
+    image: '/projects/chandupa-portfolio.png',
+    liveUrl: 'https://chandupadev.vercel.app/',
+    githubUrl: '#',
+  },
+  {
+    title: 'Sri Ananda Dhamma School',
+    description: [
+      'Architecting a digital management system for student records and class scheduling.',
+    ],
+    tech: ['Next.js', 'React'],
+    image: '/projects/dhamma-school.png',
+    liveUrl: 'https://sri-ananda-dhamma-school-4i9y.vercel.app/',
+    githubUrl: '#',
   },
 ]
 
 export default function ProjectsSection() {
   return (
     <section id="projects" className="py-24 px-6 md:px-12 bg-[#0f172a] text-white relative overflow-hidden">
-      <R3FCanvas />
+      {/* <R3FCanvas /> */}
       {/* Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -30 }}

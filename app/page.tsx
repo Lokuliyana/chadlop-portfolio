@@ -2,7 +2,7 @@
 import HeroSection from '@/components/ui/HeroSection'
 import ProjectsSection from '@/components/ui/ProjectSection'
 import AboutMeSection from '@/components/ui/AboutMeSection'
-import LeadershipSection from '@/components/ui/LeaderShipSection'
+import ExperienceSection from '@/components/ui/ExperienceSection'
 import SkillsSection from '@/components/ui/SkillSection'
 import ContactSection from '@/components/ui/ContactSection'
 
@@ -12,9 +12,9 @@ export default function Home() {
     <>
       <HeroSection />
       <AboutMeSection />
+      <ExperienceSection />
       <ProjectsSection />
       <SkillsSection />
-      <LeadershipSection />
       <ContactSection />
       {/* Other sections will go below */}
     </>

@@ -1,45 +1,39 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import VanillaTilt from 'vanilla-tilt'
+import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Tooltip } from 'react-tooltip'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
-const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
+import { FaGraduationCap, FaCertificate, FaUserTie } from 'react-icons/fa'
 
-const timeline = [
-  { year: '2022 - May', title: 'O/Ls – 9As 🎓' },
-  { year: '2022 - Jul', title: 'Diploma in Computing – ACBT 🧠' },
-  { year: '2024 - Nov', title: 'A/Ls Thurstan College – 3As & 1.9455 Z-Score 📚' },
-  { year: '2025 - Feb', title: 'BSc Computer Science at Edith Cowan University – Second Upper 🎓' },
-  { year: '2025 - Mar', title: 'Launched My Tech Startup – Chadlop 🚀' },
+// const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
+
+const education = [
+  { year: '2024 - 2025', title: 'BSc in IT & Management', institution: 'University of Moratuwa', details: 'Specializing in IT governance, systems design, and MIS.' },
+  { year: '2022 - 2025', title: 'Bachelor of Computer Science (Software Engineering)', institution: 'Edith Cowan University', details: 'Second Class Upper Division' },
+  { year: '2022', title: 'Diploma in Computing', institution: 'Australian College of Business and Technologies' },
+  { year: '2024', title: 'GCE A/L', institution: 'Thurstan College', details: '3As (Z-Score: 1.9455)' },
+]
+
+const certifications = [
+  'HRM — IBS Campus',
+  'Digital Marketing — IBS Campus',
+  'Business Management — LPEC Campus',
 ]
 
 const badges = [
-  { label: '15+ Debate Titles', tooltip: 'Multiple championships' },
-  { label: 'ECU Graduate', tooltip: 'Edith Cowan University – BSc in Computer Science' },
-  { label: 'Full-Stack Dev', tooltip: 'Specialized in Next.js, Django, GoLang' },
-  { label: 'Founder of Chadlop', tooltip: 'Launched in 2025 to build future-driven tech' },
+  { label: 'Full-Stack Engineer', tooltip: 'Scalable Web Apps & APIs' },
+  { label: 'ECU Graduate', tooltip: 'BSc Computer Science' },
+  { label: 'UoM Student', tooltip: 'BSc IT & Management' },
+  { label: 'Leader', tooltip: 'Debating & ICT Society President' },
 ]
 
 
 export default function AboutMeSection() {
-  const imageRef = useRef(null)
-
-  useEffect(() => {
-    if (imageRef.current) {
-      VanillaTilt.init(imageRef.current, {
-        max: 10,
-        speed: 400,
-        glare: true,
-        'max-glare': 0.25,
-      })
-    }
-  }, [])
-
   return (
     <motion.section
       id="about"
@@ -48,17 +42,19 @@ export default function AboutMeSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <R3FCanvas />
-
-      <h2 className="text-3xl text-center font-bold text-white mb-14 drop-shadow-[0_0_8px_cyan]">
-        👤 About Me – Timewave Origin Scroll
+      <h2 className="text-3xl text-center font-bold text-white mb-14 drop-shadow-[0_0_8px_cyan] flex items-center justify-center gap-3">
+        <FaUserTie className="text-cyan-400" /> About Me – Professional Summary
       </h2>
 
       <div className="grid md:grid-cols-2 gap-14 max-w-6xl mx-auto items-start">
         {/* Left Avatar + Badges */}
         <div className="relative flex flex-col items-center">
-          <div
-            ref={imageRef}
+          <Tilt
+            tiltMaxAngleX={10}
+            tiltMaxAngleY={10}
+            perspective={1000}
+            scale={1.05}
+            transitionSpeed={1500}
             className="w-60 h-60 rounded-full overflow-hidden border-4 border-cyan-500 ring-1 ring-offset-2 ring-cyan-300 shadow-lg bg-[#0e1b2c]/40 animate-floatingSlow mb-6"
           >
             <Image
@@ -69,14 +65,14 @@ export default function AboutMeSection() {
               className="object-contain w-full h-full drop-shadow-[0_0_25px_rgba(0,255,255,0.5)]"
               priority
             />
-          </div>
+          </Tilt>
 
           <div className="flex flex-wrap justify-center gap-4 relative z-20">
             {badges.map((badge, i) => (
               <div
                 key={i}
                 data-tooltip-id={`badge-${i}`}
-                className="bg-cyan-900/30 text-white text-sm px-4 py-2 rounded-full hover:scale-105 transition shadow-md cursor-pointer"
+                className="bg-cyan-900/30 text-white text-sm px-4 py-2 rounded-full hover:scale-105 transition shadow-md cursor-pointer border border-cyan-500/20"
               >
                 {badge.label}
                 <Tooltip id={`badge-${i}`} content={badge.tooltip} />
@@ -85,64 +81,52 @@ export default function AboutMeSection() {
           </div>
         </div>
 
-        {/* Right Timeline + Content */}
+        {/* Right Content */}
         <div className="space-y-8 relative">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-gray-200 italic text-lg leading-relaxed"
+            className="text-gray-300 leading-relaxed space-y-4"
           >
-            I’ve always thrived on building meaningful tech—whether it was managing parallel paths through A/Ls and a BSc, or deploying full-stack systems that simplify real-world problems.
-          </motion.p>
+            <p>
+              Detail-oriented <strong>Full-Stack Software Engineer</strong> with hands-on experience in scalable web application development, enterprise system engineering, and backend API design. Skilled in <strong>JavaScript/TypeScript, Next.js, Node.js, Express.js, Django, and MongoDB/MySQL</strong>.
+            </p>
+            <p>
+              Proven ability to improve system performance, optimize database workflows, and deliver production-quality platforms. Strong leadership background with experience managing teams and driving high-impact technical and organizational outcomes.
+            </p>
+          </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-gray-300"
-          >
-            I’m a Computer Science graduate from Edith Cowan University with deep focus in backend logic, scalable systems, and full-stack product development—from <strong>Next.js</strong> and <strong>Django</strong> to <strong>GoLang</strong>. In 2025, I launched my own startup, <strong>Chadlop</strong>, with a mission to empower lives through futuristic solutions.
-          </motion.p>
-
-          <div className="space-y-6 pl-6 relative">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative group"
-              >
-                {i !== 0 && (
-                  <div className="absolute -left-[22px] top-[-22px] h-[22px] w-[2px] bg-cyan-500/60" />
-                )}
-                <div className="w-4 h-4 bg-cyan-400 rounded-full shadow-md absolute -left-[30px] top-1 group-hover:animate-ping" />
-                <div className="ml-2 text-white/90 font-medium text-sm">
-                  {item.year} – {item.title}
+          {/* Education */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-cyan-300 flex items-center gap-2">
+              <FaGraduationCap /> Education
+            </h3>
+            <div className="space-y-4 pl-4 border-l-2 border-cyan-500/30">
+              {education.map((edu, i) => (
+                <div key={i} className="relative">
+                   <div className="absolute -left-[21px] top-1.5 w-3 h-3 bg-cyan-500 rounded-full" />
+                   <h4 className="text-white font-medium">{edu.title}</h4>
+                   <p className="text-sm text-cyan-200">{edu.institution} <span className="text-gray-400">({edu.year})</span></p>
+                   {edu.details && <p className="text-xs text-gray-400 italic">{edu.details}</p>}
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <motion.blockquote
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-cyan-300 bg-white/5 p-4 rounded-md border-l-4 border-cyan-400 italic text-xl shadow-md hover:shadow-cyan-400 hover:-translate-y-1 transition"
-          >
-            “Code isn’t just logic — it’s vision translated into action.”
-          </motion.blockquote>
-
-          <motion.div whileHover={{ scale: 1.05 }} className="mt-8">
-            <Link
-              href="#projects"
-              scroll
-              className="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-6 py-2 rounded-full shadow-md hover:shadow-cyan-600 transition-all"
-            >
-              🚀 View My Projects
-            </Link>
-          </motion.div>
+          {/* Certifications */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold text-cyan-300 flex items-center gap-2">
+              <FaCertificate /> Certifications
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {certifications.map((cert, i) => (
+                <span key={i} className="text-sm bg-white/5 border border-cyan-500/20 px-3 py-1 rounded-md text-gray-300">
+                  {cert}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </motion.section>
