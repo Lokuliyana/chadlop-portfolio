@@ -51,8 +51,8 @@ export default function ContactSection() {
   
 
   return (
-    <section id="contact" className="relative bg-[#0e1b2c] py-24 px-6 md:px-12 text-white overflow-hidden">
-      <h2 className="text-3xl font-bold text-cyan-300 text-center mb-2">📬 Let’s Connect</h2>
+    <section id="contact" className="relative py-24 px-6 md:px-12 text-white overflow-hidden">
+      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent text-center mb-4 drop-shadow-sm">Let’s Connect</h2>
       <p className="text-center text-white/70 italic mb-12 max-w-xl mx-auto">
         “Every great connection starts with a simple hello. Drop your thoughts below and let’s create something magical.”
       </p>

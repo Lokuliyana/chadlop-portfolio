@@ -1,104 +1,104 @@
 'use client'
 
+import { useState } from 'react'
+
 import ProjectCard from '../reusable/ProjectCard'
 import { motion } from 'framer-motion'
-
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
 
 const projects = [
   {
     title: 'Danidu.com – Enterprise Tuition Platform',
     description: [
-      'Architected a multi-tenant platform supporting 500+ active students and 40+ monthly classes.',
-      'Engineered a custom recording management system handling 50GB+ of annual video content.',
-      'Optimized MongoDB aggregation pipelines, improving backend query throughput by 32%.',
-      'Implemented a secure, randomized quiz engine with automated scoring and performance analytics.',
+      'A comprehensive enterprise-grade tuition platform engineered to support high-concurrency user loads.',
+      'Features a custom video management system handling massive data throughput and optimized database architecture for superior performance.',
+      'Includes a secure, automated examination engine with real-time analytics.',
     ],
     tech: ['Next.js', 'Express.js', 'MongoDB', 'Node.js'],
-    image: '/projects/danidu.png',
+    image: '/projects/project_danidu_refined.png',
     liveUrl: 'https://danidu.com',
-    githubUrl: '#',
   },
   {
     title: 'Intelligent Spatial Management System (FYP)',
     description: [
-      'Developed a real-time room booking system managing concurrency for 100+ rooms.',
-      'Integrated Wit.AI NLP for a chatbot, reducing manual support queries by 30%.',
-      'Reduced SQL query latency by 25% through strategic indexing and Redis caching layers.',
+      'An intelligent, real-time spatial management system designed for complex scheduling needs and high-volume concurrency.',
+      'Integrates NLP-driven chatbots for automated support, significantly reducing manual administrative overhead.',
+      'Leverages Redis caching and strategic indexing to ensure sub-millisecond query responses.',
     ],
     tech: ['Django', 'PostgreSQL', 'Wit.AI', 'Redis'],
-    image: '/projects/room-booking.jpg',
+    image: '/projects/room-booking.jpeg',
     liveUrl: 'https://room-booking.chandupa.dev',
-    githubUrl: 'https://github.com/Lokuliyana/room-booking-app',
   },
   {
     title: 'Euphoria – Mindful Application',
     description: [
-      'Building a modular mindfulness platform with integrated e-commerce and content delivery.',
-      'Achieved a 40% reduction in First Contentful Paint (FCP) via Next.js server-side rendering.',
-      'Status: Under Development',
+      'A holistic digital wellness ecosystem combining mindfulness tools with a seamless e-commerce experience.',
+      'Built on a modular architecture with server-side rendering, achieving significant performance gains and SEO optimization.',
+      'Currently under active development with a focus on scalability.',
     ],
     tech: ['Next.js', 'React', 'TailwindCSS'],
-    image: '/projects/euphoria.png',
+    image: '/projects/project_euphoria_refined.png',
     liveUrl: 'https://euphoria-hiru.vercel.app/',
-    githubUrl: '#',
   },
   {
     title: 'Vogue Essentials Store',
     description: [
-      'Developed a high-performance e-commerce frontend with optimized asset delivery.',
-      'Improved page load metrics by 35% using lazy loading and image optimization techniques.',
+      'A high-performance e-commerce storefront focusing on conversion optimization and speed.',
+      'Implements advanced asset delivery strategies and lazy loading to ensure instant page interactivity and a smooth user journey.',
     ],
     tech: ['Next.js', 'React', 'TailwindCSS'],
-    image: '/projects/vogue-essentials.png',
+    image: '/projects/project_vogue_refined.png',
     liveUrl: 'https://vogue-essentials-store.vercel.app/',
-    githubUrl: '#',
   },
   {
     title: 'Artisan Roast',
     description: [
-      'Designed a responsive landing page with complex Framer Motion animations.',
-      'Focus on smooth 60FPS transitions and interactive UI elements.',
+      'An immersive digital experience for a boutique coffee brand, featuring cinema-grade animations and fluid transitions.',
+      'Engineered for consistent 60FPS performance across devices using hardware-accelerated motion libraries.',
     ],
     tech: ['Next.js', 'React', 'Framer Motion'],
-    image: '/projects/artisan-roast.png',
+    image: '/projects/project_artisan_refined.png',
     liveUrl: 'https://artisan-roast.vercel.app/',
-    githubUrl: '#',
   },
   {
     title: 'Luminous',
     description: [
-      'Implemented a modern web application focusing on component reusability and design system consistency.',
+      'A modern, scalable web application built on a strict design system to ensure visual consistency and code reusability.',
+      'Demonstrates best practices in component-driven architecture and state management.',
     ],
     tech: ['Next.js', 'React', 'TailwindCSS'],
-    image: '/projects/luminous.png',
+    image: '/projects/project_luminous_refined.png',
     liveUrl: 'https://luminous-eta.vercel.app/',
-    githubUrl: '#',
   },
   {
     title: 'Chandupa.dev – Personal Portfolio',
     description: [
-      'Engineered an SEO-optimized portfolio with dynamic content and interactive 3D elements.',
+      'A cutting-edge personal portfolio showcasing technical prowess through interactive 3D elements and dynamic content.',
+      'Optimized for search engines and accessibility while pushing the boundaries of web graphics.',
     ],
     tech: ['Next.js', 'React', 'TailwindCSS'],
-    image: '/projects/chandupa-portfolio.png',
+    image: '/projects/project_portfolio_refined.png',
     liveUrl: 'https://chandupadev.vercel.app/',
-    githubUrl: '#',
   },
   {
     title: 'Sri Ananda Dhamma School',
     description: [
-      'Architecting a digital management system for student records and class scheduling.',
+      'A digital transformation initiative for educational management, streamlining student records and scheduling.',
+      'Focuses on data integrity, user-friendly interfaces, and scalable backend architecture.',
     ],
     tech: ['Next.js', 'React'],
-    image: '/projects/dhamma-school.png',
+    image: '/projects/project_dhamma_refined.png',
     liveUrl: 'https://sri-ananda-dhamma-school-4i9y.vercel.app/',
-    githubUrl: '#',
   },
 ]
 
 export default function ProjectsSection() {
+  const [open, setOpen] = useState(false)
+  const [index, setIndex] = useState(0)
+
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 bg-[#0f172a] text-white relative overflow-hidden">
+    <section id="projects" className="py-24 px-6 md:px-12 text-white relative overflow-hidden">
       {/* <R3FCanvas /> */}
       {/* Heading */}
       <motion.h2
@@ -111,11 +111,40 @@ export default function ProjectsSection() {
       </motion.h2>
 
       {/* Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {projects.map((proj, i) => (
-          <ProjectCard key={i} project={proj} />
+          <ProjectCard 
+            key={i} 
+            project={proj} 
+            priority={i < 2}
+            onPreview={() => {
+              setIndex(i)
+              setOpen(true)
+            }}
+          />
         ))}
       </div>
+
+
+
+      {/* Lightbox */}
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        index={index}
+        slides={projects.map((p) => ({ src: p.image, alt: p.title }))}
+        render={{
+          slide: ({ slide }) => (
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img 
+                src={slide.src} 
+                alt={slide.alt || "Project Preview"} 
+                className="max-h-[85vh] max-w-[90vw] object-contain"
+              />
+            </div>
+          ),
+        }}
+      />
     </section>
   )
 }

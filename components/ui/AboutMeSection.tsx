@@ -4,16 +4,12 @@ import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Tooltip } from 'react-tooltip'
-
-import { FaGraduationCap, FaCertificate, FaUserTie } from 'react-icons/fa'
-
-// const R3FCanvas = dynamic(() => import('../visuals/R3FCanvas'), { ssr: false })
+import { FaGraduationCap, FaCertificate } from 'react-icons/fa'
 
 const education = [
   { year: '2024 - 2025', title: 'BSc in IT & Management', institution: 'University of Moratuwa', details: 'Specializing in IT governance, systems design, and MIS.' },
-  { year: '2022 - 2025', title: 'Bachelor of Computer Science (Software Engineering)', institution: 'Edith Cowan University', details: 'Second Class Upper Division' },
-  { year: '2022', title: 'Diploma in Computing', institution: 'Australian College of Business and Technologies' },
-  { year: '2024', title: 'GCE A/L', institution: 'Thurstan College', details: '3As (Z-Score: 1.9455)' },
+  { year: '2022 - 2025', title: 'Bachelor of Computer Science', institution: 'Edith Cowan University', details: 'Second Class Upper Division' },
+  { year: '2022', title: 'Diploma in Computing', institution: 'ACBT', details: '' },
 ]
 
 const certifications = [
@@ -29,103 +25,124 @@ const badges = [
   { label: 'Leader', tooltip: 'Debating & ICT Society President' },
 ]
 
-
 export default function AboutMeSection() {
   return (
-    <motion.section
+    <section
       id="about"
-      className="relative py-28 px-6 md:px-12 bg-[#0e1b2c] overflow-hidden z-10"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      className="relative py-24 px-6 md:px-12 overflow-hidden z-10"
     >
-      <h2 className="text-3xl text-center font-bold text-white mb-14 drop-shadow-[0_0_8px_cyan] flex items-center justify-center gap-3">
-        <FaUserTie className="text-cyan-400" /> About Me – Professional Summary
-      </h2>
+      <div className="max-w-7xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-16 text-center drop-shadow-sm"
+        >
+          About Me
+        </motion.h2>
 
-      <div className="grid md:grid-cols-2 gap-14 max-w-6xl mx-auto items-start">
-        {/* Left Avatar + Badges */}
-        <div className="relative flex flex-col items-center">
-          <Tilt
-            tiltMaxAngleX={10}
-            tiltMaxAngleY={10}
-            perspective={1000}
-            scale={1.05}
-            transitionSpeed={1500}
-            className="w-60 h-60 rounded-full overflow-hidden border-4 border-cyan-500 ring-1 ring-offset-2 ring-cyan-300 shadow-lg bg-[#0e1b2c]/40 animate-floatingSlow mb-6"
-          >
-            <Image
-              src="/Chandupa-Avatarr.png"
-              alt="Chandupa Portrait"
-              width={240}
-              height={240}
-              className="object-contain w-full h-full drop-shadow-[0_0_25px_rgba(0,255,255,0.5)]"
-              priority
-            />
-          </Tilt>
+        <div className="grid md:grid-cols-2 gap-16 items-start">
+          {/* Left Column: Avatar & Tags */}
+          <div className="flex flex-col items-center">
+            <Tilt
+              tiltMaxAngleX={5}
+              tiltMaxAngleY={5}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={2000}
+              className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.3)] mb-8"
+            >
+              <Image
+                src="/Chandupa-Avatarr.png"
+                alt="Chandupa Portrait"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+            </Tilt>
 
-          <div className="flex flex-wrap justify-center gap-4 relative z-20">
-            {badges.map((badge, i) => (
-              <div
-                key={i}
-                data-tooltip-id={`badge-${i}`}
-                className="bg-cyan-900/30 text-white text-sm px-4 py-2 rounded-full hover:scale-105 transition shadow-md cursor-pointer border border-cyan-500/20"
-              >
-                {badge.label}
-                <Tooltip id={`badge-${i}`} content={badge.tooltip} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Content */}
-        <div className="space-y-8 relative">
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-gray-300 leading-relaxed space-y-4"
-          >
-            <p>
-              Detail-oriented <strong>Full-Stack Software Engineer</strong> with hands-on experience in scalable web application development, enterprise system engineering, and backend API design. Skilled in <strong>JavaScript/TypeScript, Next.js, Node.js, Express.js, Django, and MongoDB/MySQL</strong>.
-            </p>
-            <p>
-              Proven ability to improve system performance, optimize database workflows, and deliver production-quality platforms. Strong leadership background with experience managing teams and driving high-impact technical and organizational outcomes.
-            </p>
-          </motion.div>
-
-          {/* Education */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-cyan-300 flex items-center gap-2">
-              <FaGraduationCap /> Education
-            </h3>
-            <div className="space-y-4 pl-4 border-l-2 border-cyan-500/30">
-              {education.map((edu, i) => (
-                <div key={i} className="relative">
-                   <div className="absolute -left-[21px] top-1.5 w-3 h-3 bg-cyan-500 rounded-full" />
-                   <h4 className="text-white font-medium">{edu.title}</h4>
-                   <p className="text-sm text-cyan-200">{edu.institution} <span className="text-gray-400">({edu.year})</span></p>
-                   {edu.details && <p className="text-xs text-gray-400 italic">{edu.details}</p>}
-                </div>
+            {/* Tags / Badges */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {badges.map((badge, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  data-tooltip-id={`badge-${i}`}
+                  className="bg-white/5 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm text-cyan-100 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default"
+                >
+                  {badge.label}
+                  <Tooltip id={`badge-${i}`} content={badge.tooltip} className="z-50" />
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Certifications */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-cyan-300 flex items-center gap-2">
-              <FaCertificate /> Certifications
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {certifications.map((cert, i) => (
-                <span key={i} className="text-sm bg-white/5 border border-cyan-500/20 px-3 py-1 rounded-md text-gray-300">
-                  {cert}
-                </span>
-              ))}
+          {/* Right Column: Bio, Timeline, Certs */}
+          <div className="space-y-10">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="prose prose-lg prose-invert max-w-none"
+            >
+              <p className="text-xl text-gray-200 leading-relaxed font-light">
+                I’m a detail-oriented <span className="text-cyan-400 font-semibold">Full-Stack Software Engineer</span> with a passion for building scalable, enterprise-grade systems.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                My expertise lies in architecting robust backend APIs, optimizing database workflows, and crafting intuitive frontend experiences. I thrive in solving complex technical challenges and delivering production-ready platforms.
+              </p>
+            </motion.div>
+
+            {/* Education Timeline */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-white flex items-center gap-3">
+                <FaGraduationCap className="text-cyan-400" /> Education
+              </h3>
+              <div className="space-y-8 pl-4 border-l-2 border-cyan-500/30 ml-2">
+                {education.map((edu, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="relative pl-6"
+                  >
+                    {/* Timeline Dot */}
+                    <div className="absolute -left-[21px] top-1.5 w-4 h-4 bg-cyan-500 rounded-full border-2 border-[#0f172a] shadow-[0_0_10px_cyan]" />
+                    
+                    <h4 className="text-lg font-bold text-white">{edu.title}</h4>
+                    <p className="text-cyan-300 font-medium">{edu.institution}</p>
+                    <p className="text-sm text-gray-500 mb-1">{edu.year}</p>
+                    {edu.details && <p className="text-sm text-gray-400 italic">{edu.details}</p>}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-white flex items-center gap-3">
+                <FaCertificate className="text-cyan-400" /> Certifications
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {certifications.map((cert, i) => (
+                  <motion.span 
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="bg-cyan-950/40 text-cyan-200 border border-cyan-500/20 px-4 py-2 rounded-lg text-sm hover:bg-cyan-900/40 transition-colors"
+                  >
+                    {cert}
+                  </motion.span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

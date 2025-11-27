@@ -64,9 +64,9 @@ export default function SkillsSection() {
   })
 
   return (
-    <section id="skills" className="py-28 px-6 md:px-12 bg-[#0e1b2c]/80 backdrop-blur-md text-white relative z-10 overflow-hidden">
-      <h2 className="text-3xl text-center font-bold text-white mb-14 drop-shadow-[0_0_8px_cyan] flex items-center justify-center gap-3">
-        <FaCode className="text-cyan-400" /> Technical Skills
+    <section id="skills" className="py-28 px-6 md:px-12 backdrop-blur-md text-white relative z-10 overflow-hidden">
+      <h2 className="text-3xl md:text-4xl text-center font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-14 drop-shadow-sm">
+        Technical Skills
       </h2>
 
       <div ref={ref} className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">

@@ -83,7 +83,7 @@ export default function ParticlesBackground() {
               enable: true,
               // area: 800,
             },
-            value: 60, // Reduced particle count
+            value: 120, // Increased particle count
           },
           opacity: {
             value: 0.3,

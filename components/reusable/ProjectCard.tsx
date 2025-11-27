@@ -1,7 +1,6 @@
 'use client'
-import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaEye } from 'react-icons/fa'
 import Image from 'next/image'
 
 type Project = {
@@ -11,82 +10,73 @@ type Project = {
   image: string
   preview?: string
   liveUrl: string
-  githubUrl: string
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({ 
+  project, 
+  onPreview,
+  priority = false
+}: { 
+  project: Project
+  onPreview: () => void 
+  priority?: boolean
+}) {
   return (
-    <Tilt
-      tiltMaxAngleX={10}
-      tiltMaxAngleY={10}
-      perspective={1000}
-      scale={1.02}
-      transitionSpeed={1500}
-      className="h-full"
-    >
       <motion.div
-        className="bg-glass rounded-xl p-5 backdrop-blur-sm border border-cyan-300/20 hover:shadow-cyan-500/30 transition-all duration-300 group relative h-full flex flex-col"
+        className="bg-gray-900/40 backdrop-blur-md rounded-xl border border-white/10 overflow-hidden hover:border-cyan-500/30 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] transition-all duration-500 group flex flex-col h-full"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* 📸 Image + Preview */}
-        <div className="aspect-video overflow-hidden rounded-md mb-4 relative">
+        {/* 🖥️ Browser Window Frame & Header */}
+        <div className="bg-gray-800/80 border-b border-white/5 p-3 flex items-center gap-3">
+          {/* Window Controls */}
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+          </div>
+
+          {/* Address Bar / Title */}
+          <div className="flex-1 bg-black/20 h-7 rounded-md border border-white/5 flex items-center px-3 justify-between group/header">
+            <span className="text-xs text-gray-400 font-mono truncate max-w-[150px] group-hover:text-cyan-300 transition-colors">
+              {project.title}
+            </span>
+            
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              className="text-gray-500 hover:text-cyan-400 transition-colors"
+              title="Visit Live Site"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FaExternalLinkAlt className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
+
+        {/* 📸 Image Container (Clickable for Preview) */}
+        <div 
+          onClick={onPreview}
+          className="relative aspect-video w-full block overflow-hidden group-hover:opacity-90 transition-opacity cursor-pointer"
+        >
           <Image
             src={project.image}
             alt={project.title}
             fill
-            className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+            priority={priority}
           />
-
-          {project.preview && (
-            <Image
-              src={project.preview}
-              alt={`${project.title} Preview`}
-              fill
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            />
-          )}
-        </div>
-
-        <h3 className="text-xl font-semibold tracking-wide text-white mb-2">
-          {project.title}
-        </h3>
-
-        <ul className="text-sm text-gray-300 list-disc pl-5 mb-4 space-y-1 flex-grow">
-          {project.description.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tag, i) => (
-            <span
-              key={i}
-              className="text-xs bg-cyan-900/30 px-3 py-1 rounded-full animate-popIn hover:scale-105 transition"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-4 mt-auto">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            className="px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg text-black font-semibold hover:scale-105 transition-transform flex items-center gap-2"
-          >
-            More <FaExternalLinkAlt className="icon transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white font-semibold hover:scale-105 transition-transform flex items-center gap-2"
-          >
-            Code <FaGithub className="icon transition-transform group-hover:rotate-6" />
-          </a>
+          
+          {/* Hover Overlay with Eye Icon */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-black/60 backdrop-blur-md p-3 rounded-full border border-white/20 shadow-xl">
+              <FaEye className="w-5 h-5 text-white" />
+            </div>
+          </div>
         </div>
       </motion.div>
-    </Tilt>
   )
 }

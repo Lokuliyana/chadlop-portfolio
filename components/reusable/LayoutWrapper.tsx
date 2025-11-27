@@ -6,7 +6,7 @@ import ParticlesBackground from '@/components/reusable/ParticlesBackground'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-[#0f172a] overflow-hidden text-white">
+    <div className="relative min-h-screen overflow-hidden text-white">
       {/* Global background particle canvas */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <ParticlesBackground />

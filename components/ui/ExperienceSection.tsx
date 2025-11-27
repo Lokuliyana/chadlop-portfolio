@@ -29,15 +29,15 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 px-6 md:px-12 bg-[#0f172a] text-white relative overflow-hidden">
+    <section id="experience" className="py-24 px-6 md:px-12 text-white relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-16 drop-shadow-[0_0_10px_cyan]"
+          className="text-3xl md:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-sm"
         >
-          💼 Professional Experience
+          Professional Experience
         </motion.h2>
 
         <div className="space-y-12 relative border-l-2 border-cyan-500/30 ml-4 md:ml-10 pl-8 md:pl-12">
@@ -50,9 +50,9 @@ export default function ExperienceSection() {
               className="relative"
             >
               {/* Timeline Dot */}
-              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-6 h-6 bg-cyan-500 rounded-full border-4 border-[#0f172a] shadow-[0_0_10px_cyan]" />
+              <div className="absolute -left-[41px] md:-left-[57px] top-0 w-6 h-6 bg-cyan-500 rounded-full border-4 border-[#0f172a] shadow-[0_0_10px_cyan] z-10" />
 
-              <div className="bg-glass p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-400/50 transition-colors">
+              <div className="bg-glass p-6 rounded-xl border border-cyan-500/20 hover:border-cyan-400/50 transition-colors ml-2 md:ml-0">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                   <div>
                     <h3 className="text-xl font-bold text-white">{exp.role}</h3>

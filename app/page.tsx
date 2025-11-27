@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic'
 
 const HeroSection = dynamic(() => import('@/components/ui/HeroSection'), { ssr: true })
-const ProjectsSection = dynamic(() => import('@/components/ui/ProjectSection'), { ssr: true })
+import ProjectStickyGrid from '@/components/ui/ProjectStickyGrid'
 const AboutMeSection = dynamic(() => import('@/components/ui/AboutMeSection'), { ssr: true })
 const ExperienceSection = dynamic(() => import('@/components/ui/ExperienceSection'), { ssr: true })
 const SkillsSection = dynamic(() => import('@/components/ui/SkillSection'), { ssr: true })
@@ -15,7 +15,7 @@ export default function Home() {
       <HeroSection />
       <AboutMeSection />
       <ExperienceSection />
-      <ProjectsSection />
+      <ProjectStickyGrid />
       <SkillsSection />
       <ContactSection />
       {/* Other sections will go below */}
