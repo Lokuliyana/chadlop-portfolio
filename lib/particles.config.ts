@@ -44,7 +44,6 @@ const particlesOptions: ISourceOptions = {
     number: {
       density: {
         enable: true,
-        area: 800,
       },
       value: 15,
     },

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
   SiNextdotjs,
@@ -10,7 +10,6 @@ import {
   SiGoland,
   SiMysql,
   SiGit,
-  SiJsonwebtokens,
   SiTypescript,
   SiPython,
   SiCplusplus,
@@ -26,14 +25,6 @@ import {
   FaDatabase,
   FaCode,
 } from 'react-icons/fa'
-import { IconType } from 'react-icons'
-
-
-type SkillItem = {
-  name: string
-  icon: IconType
-  tooltip: string
-}
 
 
 const skillGroups = {

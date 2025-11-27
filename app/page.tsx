@@ -1,10 +1,12 @@
 // app/page.tsx
-import HeroSection from '@/components/ui/HeroSection'
-import ProjectsSection from '@/components/ui/ProjectSection'
-import AboutMeSection from '@/components/ui/AboutMeSection'
-import ExperienceSection from '@/components/ui/ExperienceSection'
-import SkillsSection from '@/components/ui/SkillSection'
-import ContactSection from '@/components/ui/ContactSection'
+import dynamic from 'next/dynamic'
+
+const HeroSection = dynamic(() => import('@/components/ui/HeroSection'), { ssr: true })
+const ProjectsSection = dynamic(() => import('@/components/ui/ProjectSection'), { ssr: true })
+const AboutMeSection = dynamic(() => import('@/components/ui/AboutMeSection'), { ssr: true })
+const ExperienceSection = dynamic(() => import('@/components/ui/ExperienceSection'), { ssr: true })
+const SkillsSection = dynamic(() => import('@/components/ui/SkillSection'), { ssr: true })
+const ContactSection = dynamic(() => import('@/components/ui/ContactSection'), { ssr: true })
 
 // This is the main entry point for the Next.js application.
 export default function Home() {

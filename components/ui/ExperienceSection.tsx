@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaBriefcase, FaCalendarAlt } from 'react-icons/fa'
+import { FaCalendarAlt } from 'react-icons/fa'
 
 const experiences = [
   {

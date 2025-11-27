@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
-import { FaArrowDown, FaLinkedin, FaEnvelope, FaPhone, FaHandPaper, FaLaptopCode, FaRocket, FaFileAlt, FaCheckCircle, FaLightbulb } from 'react-icons/fa';
+import { FaArrowDown, FaLinkedin, FaEnvelope, FaPhone, FaRocket, FaFileAlt, FaCheckCircle, FaLightbulb } from 'react-icons/fa';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 

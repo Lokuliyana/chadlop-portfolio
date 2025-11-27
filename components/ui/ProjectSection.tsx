@@ -2,7 +2,6 @@
 
 import ProjectCard from '../reusable/ProjectCard'
 import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
 
 
 const projects = [

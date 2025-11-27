@@ -1,12 +1,9 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
 import Tilt from 'react-parallax-tilt'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Tooltip } from 'react-tooltip'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
 
 import { FaGraduationCap, FaCertificate, FaUserTie } from 'react-icons/fa'
 
