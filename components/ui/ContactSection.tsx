@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
 import contactAvatar from '@/public/lottie/Contact.json'
 
@@ -157,14 +157,17 @@ export default function ContactSection() {
       >
         <p className="text-white/80 text-center">Or connect via:</p>
         <div className="flex space-x-6 text-3xl text-cyan-400">
-          <a href="mailto:chandupa@example.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/94758515818" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp className="hover:text-white transition" />
+          </a>
+          <a href="mailto:lokuliysnscp@gmail.com" target="_blank" rel="noopener noreferrer">
             <FaEnvelope className="hover:text-white transition" />
           </a>
-          <a href="https://github.com/chandupadev" target="_blank" rel="noopener noreferrer">
-            <FaGithub className="hover:text-white transition" />
-          </a>
-          <a href="https://linkedin.com/in/chandupa" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/chandupa-lokuliyana-ab6907302" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="hover:text-white transition" />
+          </a>
+          <a href="https://github.com/Lokuliyana" target="_blank" rel="noopener noreferrer">
+            <FaGithub className="hover:text-white transition" />
           </a>
         </div>
       </motion.div>

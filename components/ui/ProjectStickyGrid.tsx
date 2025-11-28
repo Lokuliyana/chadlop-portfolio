@@ -118,33 +118,35 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
 
 export default function ProjectStickyGrid() {
   return (
-    <section className="relative py-24 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
+    <section id="projects" className="relative py-12 md:py-24 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-24">
         
         {/* Left Column: Sticky Header */}
-        <div className="md:w-1/3 lg:w-1/4 sticky top-32 self-start">
-          <motion.h2 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-sm"
-          >
-            Selected Works
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg leading-relaxed mb-8"
-          >
-            A curated collection of projects that define my journey in engineering and design. Each piece represents a unique challenge and a creative solution.
-          </motion.p>
-          
-          <div className="hidden md:block w-12 h-1 bg-cyan-500/30 rounded-full" />
+        <div className="md:w-1/3 lg:w-1/4">
+          <div className="sticky top-24 flex flex-col justify-center">
+            <motion.h2 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6 drop-shadow-sm"
+            >
+              Selected Works
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-gray-400 text-lg leading-relaxed mb-8"
+            >
+              A curated collection of projects that define my journey in engineering and design. Each piece represents a unique challenge and a creative solution.
+            </motion.p>
+            
+            <div className="hidden md:block w-12 h-1 bg-cyan-500/30 rounded-full" />
+          </div>
         </div>
 
-        {/* Right Column: Scrollable Grid */}
+        {/* Right Column: Natural Scroll Grid */}
         <div className="md:w-2/3 lg:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project, i) => (

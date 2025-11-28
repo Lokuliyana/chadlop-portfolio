@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import ProjectCard from '../reusable/ProjectCard'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
 
@@ -96,36 +96,84 @@ const projects = [
 export default function ProjectsSection() {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
+  
+  const targetRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+
+  // Transform vertical scroll to horizontal movement
+  // We want the projects to scroll left as we scroll down
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"])
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 text-white relative overflow-hidden">
-      {/* <R3FCanvas /> */}
-      {/* Heading */}
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="text-3xl md:text-4xl font-bold text-center mb-16 drop-shadow-[0_0_10px_cyan]"
-      >
-        🚀 Projects – My Living Tech Gallery
-      </motion.h2>
+    <section ref={targetRef} id="projects" className="relative h-[300vh] bg-black/0">
+      <div className="sticky top-0 h-screen flex flex-col lg:flex-row items-start overflow-hidden">
+        
+        {/* Left Side - Static Header */}
+        <div className="w-full lg:w-1/3 h-fit lg:h-full p-6 md:p-12 flex flex-col justify-center z-10 bg-black/0 backdrop-blur-sm lg:backdrop-blur-none">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent inline-block">
+              Selected Works
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-3 h-8 md:h-12 ml-2 align-middle bg-cyan-400"
+              />
+            </h2>
+            <p className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-md">
+              A curated collection of my technical endeavors.
+              <br className="hidden md:block" />
+              <span className="text-sm text-gray-500 mt-4 block">
+                (Scroll down to explore)
+              </span>
+            </p>
+          </motion.div>
+        </div>
 
-      {/* Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {projects.map((proj, i) => (
-          <ProjectCard 
-            key={i} 
-            project={proj} 
-            priority={i < 2}
-            onPreview={() => {
-              setIndex(i)
-              setOpen(true)
-            }}
-          />
-        ))}
+        {/* Right Side - Horizontal Scroll Track */}
+        <div className="w-full lg:w-2/3 h-full flex items-center pl-6 lg:pl-0 overflow-hidden">
+          {/* Desktop: Horizontal Scroll */}
+          <motion.div 
+            style={{ x }} 
+            className="hidden lg:flex gap-8 pr-12"
+          >
+            {projects.map((proj, i) => (
+              <div key={i} className="w-[600px] flex-shrink-0">
+                <ProjectCard 
+                  project={proj} 
+                  priority={i < 2}
+                  onPreview={() => {
+                    setIndex(i)
+                    setOpen(true)
+                  }}
+                />
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Mobile: Vertical Scroll (Standard Grid) */}
+          <div className="lg:hidden flex flex-col gap-8 pb-24 w-full pr-6 overflow-y-auto h-full">
+             {projects.map((proj, i) => (
+              <div key={i} className="w-full">
+                <ProjectCard 
+                  project={proj} 
+                  priority={i < 2}
+                  onPreview={() => {
+                    setIndex(i)
+                    setOpen(true)
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
-
-
 
       {/* Lightbox */}
       <Lightbox

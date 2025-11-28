@@ -37,12 +37,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`bg-background text-white ${outfit.variable} ${inter.variable} font-sans antialiased transition-colors duration-300`}
+        className={`bg-background text-white ${outfit.variable} ${inter.variable} font-sans antialiased transition-colors duration-300 overflow-x-hidden`}
       >
         <LayoutWrapper>
           <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-1 overflow-x-hidden">{children}</main>
+            <main className="flex-1">{children}</main>
             {/* <Footer /> */}
           </div>
         </LayoutWrapper>
