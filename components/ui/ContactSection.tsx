@@ -160,7 +160,7 @@ export default function ContactSection() {
           <a href="https://wa.me/94758515818" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp className="hover:text-white transition" />
           </a>
-          <a href="mailto:lokuliysnscp@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:lokuliyanacp@gmail.com" target="_blank" rel="noopener noreferrer">
             <FaEnvelope className="hover:text-white transition" />
           </a>
           <a href="https://www.linkedin.com/in/chandupa-lokuliyana-ab6907302" target="_blank" rel="noopener noreferrer">
