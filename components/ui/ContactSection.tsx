@@ -1,60 +1,69 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from 'react-icons/fa'
-import dynamic from 'next/dynamic'
-import contactAvatar from '@/public/lottie/Contact.json'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import dynamic from "next/dynamic";
+import contactAvatar from "@/public/lottie/Contact.json";
 
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name as keyof typeof formData]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const { name, email, message } = formData
-  
-    if (!name || !email.includes('@') || !message) {
-      setError(true)
-      return
+    e.preventDefault();
+    const { name, email, message } = formData;
+
+    if (!name || !email.includes("@") || !message) {
+      setError(true);
+      return;
     }
-  
+
     try {
-      const res = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
-      })
-  
-      if (!res.ok) throw new Error('Failed to send email')
-  
-      setSubmitted(true)
-      setFormData({ name: '', email: '', message: '' })
+      });
+
+      if (!res.ok) throw new Error("Failed to send email");
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error(err)
-      setError(true)
+      console.error(err);
+      setError(true);
     }
-  }
-  
+  };
 
   return (
-    <section id="contact" className="relative py-24 px-6 md:px-12 text-white overflow-hidden">
-      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent text-center mb-4 drop-shadow-sm">Let’s Connect</h2>
+    <section
+      id="contact"
+      className="relative py-24 px-6 md:px-12 text-white overflow-hidden"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent text-center mb-4 drop-shadow-sm">
+        Let’s Connect
+      </h2>
       <p className="text-center text-white/70 italic mb-12 max-w-xl mx-auto">
-        “Every great connection starts with a simple hello. Drop your thoughts below and let’s create something magical.”
+        “Every great connection starts with a simple hello. Drop your thoughts
+        below and let’s create something magical.”
       </p>
 
       <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto items-center">
@@ -75,7 +84,7 @@ export default function ContactSection() {
               “Hey there! Let’s build something amazing together.”
             </motion.p>
 
-            <div className="filter hue-rotate-300 brightness-150 contrast-150 saturate-150">
+            <div className="filter hue-rotate-150 brightness-150 contrast-150 saturate-150">
               <Lottie animationData={contactAvatar} loop />
             </div>
           </div>
@@ -99,24 +108,32 @@ export default function ContactSection() {
             </motion.div>
           ) : (
             <>
-              {(['name', 'email'] as Array<keyof typeof formData>).map((field) => (
-                <div key={field} className="relative">
-                  <motion.input
-                    type={field === 'email' ? 'email' : 'text'}
-                    name={field}
-                    value={formData[field as keyof typeof formData]}
-                    onChange={handleChange}
-                    animate={error && !formData[field] ? { x: [-4, 4, -4, 0] } : {}}
-                    placeholder={field === 'email' ? 'Your Email' : 'Your Name'}
-                    className={`peer w-full bg-transparent border ${
-                      error && !formData[field] ? 'border-red-500' : 'border-cyan-400/30'
-                    } text-white px-4 pt-6 pb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-transparent`}
-                  />
-                  <label className="absolute left-3 top-2 text-sm text-cyan-300 transition-all scale-90 origin-left peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:text-sm peer-focus:scale-90">
-                    {field === 'email' ? 'Email' : 'Name'}
-                  </label>
-                </div>
-              ))}
+              {(["name", "email"] as Array<keyof typeof formData>).map(
+                (field) => (
+                  <div key={field} className="relative">
+                    <motion.input
+                      type={field === "email" ? "email" : "text"}
+                      name={field}
+                      value={formData[field as keyof typeof formData]}
+                      onChange={handleChange}
+                      animate={
+                        error && !formData[field] ? { x: [-4, 4, -4, 0] } : {}
+                      }
+                      placeholder={
+                        field === "email" ? "Your Email" : "Your Name"
+                      }
+                      className={`peer w-full bg-transparent border ${
+                        error && !formData[field]
+                          ? "border-red-500"
+                          : "border-cyan-400/30"
+                      } text-white px-4 pt-6 pb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-transparent`}
+                    />
+                    <label className="absolute left-3 top-2 text-sm text-cyan-300 transition-all scale-90 origin-left peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:text-sm peer-focus:scale-90">
+                      {field === "email" ? "Email" : "Name"}
+                    </label>
+                  </div>
+                )
+              )}
 
               {/* Message */}
               <div className="relative">
@@ -125,10 +142,14 @@ export default function ContactSection() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  animate={error && !formData.message ? { x: [-4, 4, -4, 0] } : {}}
+                  animate={
+                    error && !formData.message ? { x: [-4, 4, -4, 0] } : {}
+                  }
                   placeholder="Your Message"
                   className={`peer w-full bg-transparent border ${
-                    error && !formData.message ? 'border-red-500' : 'border-cyan-400/30'
+                    error && !formData.message
+                      ? "border-red-500"
+                      : "border-cyan-400/30"
                   } text-white px-4 pt-6 pb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-transparent`}
                 />
                 <label className="absolute left-3 top-2 text-sm text-cyan-300 transition-all scale-90 origin-left peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:text-sm peer-focus:scale-90">
@@ -157,20 +178,36 @@ export default function ContactSection() {
       >
         <p className="text-white/80 text-center">Or connect via:</p>
         <div className="flex space-x-6 text-3xl text-cyan-400">
-          <a href="https://wa.me/94758515818" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://wa.me/94758515818"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaWhatsapp className="hover:text-white transition" />
           </a>
-          <a href="mailto:lokuliyanacp@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="mailto:lokuliyanacp@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaEnvelope className="hover:text-white transition" />
           </a>
-          <a href="https://www.linkedin.com/in/chandupa-lokuliyana-ab6907302" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com/in/chandupa-lokuliyana-ab6907302"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin className="hover:text-white transition" />
           </a>
-          <a href="https://github.com/Lokuliyana" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/Lokuliyana"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaGithub className="hover:text-white transition" />
           </a>
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

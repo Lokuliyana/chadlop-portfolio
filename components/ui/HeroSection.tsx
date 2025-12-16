@@ -16,7 +16,7 @@ const Lottie = dynamic(() => import('lottie-react'), {
 
 const greetings = [
   `<span class='text-white'>Hi, I’m <strong class='text-cyan-400'>Chandupa Lokuliyana</strong><br/> Full-Stack Software Engineer</span>`,
-  `<span class='text-cyan-300 italic'>Building scalable systems & enterprise solutions</span>`,
+  `<span class='text-cyan-300 italic'>Building scalable systems and enterprise solutions</span>`,
 ];
 
 export default function HeroSection() {

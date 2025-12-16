@@ -7,7 +7,7 @@ import { Tooltip } from 'react-tooltip'
 import { FaGraduationCap, FaCertificate } from 'react-icons/fa'
 
 const education = [
-  { year: '2024 - 2025', title: 'BSc in IT & Management', institution: 'University of Moratuwa', details: 'Specializing in IT governance, systems design, and MIS.' },
+  { year: '2025', title: 'BSc (Hons) in IT & Management', institution: 'University of Moratuwa', details: 'Selected for the 2024/2025 intake; currently reading my second Degree.' },
   { year: '2022 - 2025', title: 'Bachelor of Computer Science', institution: 'Edith Cowan University', details: 'Second Class Upper Division' },
   { year: '2022', title: 'Diploma in Computing', institution: 'ACBT', details: '' },
 ]
